@@ -17,12 +17,12 @@ var server = http.createServer( function (request, response) {
 	serveStatic(response, cache, absPath);
 });
 
+var chatServer = require('./lib/chat_server');
+chatServer.listen(server);
+
 server.listen(3000, function() {
 	console.log("Server listening on port 3000.");
 });
-
-var chatServer = require('./lib/chat_server');
-chatServer.listen(server);
 
 function send404(response) {
 	response.writeHead(404, {'Content-Type' : 'text/plain'});
